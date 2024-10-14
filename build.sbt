@@ -10,7 +10,8 @@ lazy val root = (project in file("."))
     name := "narooma",
     idePackagePrefix := Some("org.nkcoder"),
     libraryDependencies ++= Seq(
+      "org.scalactic" %% "scalactic" % scalaTestVersion,
       "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
-      "org.scalactic" %% "scalactic" % scalaTestVersion
+      "org.scalatestplus" %% "scalacheck-1-18" % "3.2.19.0" % "test"
     )
   )
