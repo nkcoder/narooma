@@ -1,5 +1,4 @@
 package org.nkcoder
 
-class Dollar(var amount: Int):
-  def times(multiplier: Int): Unit =
-    amount *= multiplier
+class Dollar(val amount: Int):
+  def times(multiplier: Int): Dollar = Dollar(amount * multiplier)
