@@ -13,4 +13,12 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
     val product5 = fiveDollar.times(5)
     product5.amount should be(25)
   }
+
+  "Dollar" should "be able to process equality" in {
+    Dollar(5) should be(Dollar(5))
+    assert(Dollar(5) == Dollar(5))
+    assert(Dollar(5) != Dollar(6))
+
+    Dollar(5) should not be null
+  }
 }
