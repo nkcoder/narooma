@@ -7,11 +7,8 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
 
   "Dollar" should "be able to process multiplication" in {
     val fiveDollar = Dollar(5)
-    val product2 = fiveDollar.times(2)
-    product2.amount should be(10)
-
-    val product5 = fiveDollar.times(5)
-    product5.amount should be(25)
+    fiveDollar.times(2) should be(Dollar(10))
+    fiveDollar.times(5) should be(Dollar(25))
   }
 
   "Dollar" should "be able to process equality" in {
