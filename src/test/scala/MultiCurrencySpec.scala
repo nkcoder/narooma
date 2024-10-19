@@ -26,4 +26,12 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
     fiveFranc.times(2) should be(Franc(10))
     fiveFranc.times(5) should be(Franc(25))
   }
+  
+  "Franc" should "be able to process equality" in {
+    Franc(5) should be(Franc(5))
+    assert(Franc(5) == Franc(5))
+    assert(Franc(5) != Franc(6))
+
+    Franc(5) should not be null
+  }
 }
