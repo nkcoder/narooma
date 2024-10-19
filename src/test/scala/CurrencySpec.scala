@@ -5,15 +5,16 @@ import org.scalatest.matchers.should
 
 import scala.Console.in
 
-class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
+class CurrencySpec extends AnyFlatSpec with should.Matchers {
 
+  behavior of "Dollar"
   "Dollar" should "be able to process multiplication" in {
     val fiveDollar = Dollar(5)
     fiveDollar.times(2) should be(Dollar(10))
     fiveDollar.times(5) should be(Dollar(25))
   }
 
-  "Dollar" should "be able to process equality" in {
+  it should "be able to process equality" in {
     Dollar(5) should be(Dollar(5))
     assert(Dollar(5) == Dollar(5))
     assert(Dollar(5) != Dollar(6))
@@ -21,13 +22,14 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
     Dollar(5) should not be null
   }
 
+  behavior of "Franc"
   "Franc" should "be able to process multiplication" in {
     val fiveFranc = Franc(5)
     fiveFranc.times(2) should be(Franc(10))
     fiveFranc.times(5) should be(Franc(25))
   }
 
-  "Franc" should "be able to process equality" in {
+  it should "be able to process equality" in {
     Franc(5) should be(Franc(5))
     assert(Franc(5) == Franc(5))
     assert(Franc(5) != Franc(6))
@@ -35,10 +37,11 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
     Franc(5) should not be null
   }
 
-  "Dollar" should "not be equal to Franc" in {
+  it should "not be equal to Dollar" in {
     Dollar(5) should not be Franc(5)
   }
 
+  behavior of "Money"
   "Money" should "be able to process multiplication" in {
     val fiveDollar: Money = Money.dollar(5)
     Money.dollar(10) should be(fiveDollar.times(2))
@@ -55,6 +58,7 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
     Money.dollar(5) should not be Money.franc(5)
   }
 
+  behavior of "Currency"
   "Currency" should "be there for us" in {
     Currency.USD should be(Money.dollar(1).currency)
     Currency.CHF should be(Money.franc(1).currency)
