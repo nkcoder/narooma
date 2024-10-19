@@ -1,7 +1,17 @@
 package org.nkcoder
 
+import scala.annotation.targetName
+
 class Money(val amount: Int, val currency: Currency):
   def times(multiplier: Int): Money = Money(amount * multiplier, currency)
+
+  /**
+   * It is recommended that definitions of symbolic operators carry a @targetName annotation that provides an encoding
+   * of the operator with an alphanumeric name.
+   * Ref: https://docs.scala-lang.org/scala3/reference/changed-features/operators.html
+   */
+  @targetName("add")
+  def +(addend: Money): Money = Money(amount + addend.amount, currency)
 
   override def equals(obj: Any): Boolean = obj match
     case that: Money => amount == that.amount && currency == that.currency

@@ -78,3 +78,4 @@
 ### V7 (clean up)
 - [ ] $5 + 10 CHF = $10 if CHF:USD rate is 2:1
 - [ ] Money rounding?
+- [ ] $5 + $6 = $11

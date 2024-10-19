@@ -50,12 +50,17 @@ class CurrencySpec extends AnyFlatSpec with should.Matchers {
     Money.franc(15) should be(fiveFranc.times(3))
   }
 
-  "Money" should "be able to process equality" in {
+  it should "be able to process equality" in {
     Money.dollar(5) should be(Money.dollar(5))
     Money.dollar(5) should not be Money.dollar(6)
     Money.franc(5) should be(Money.franc(5))
     Money.franc(5) should not be Money.franc(6)
     Money.dollar(5) should not be Money.franc(5)
+  }
+
+  it should "be able to process addition" in {
+    val sum = Money.dollar(5) + Money.dollar(6)
+    sum should be(Money.dollar(11))
   }
 
   behavior of "Currency"
