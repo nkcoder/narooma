@@ -34,4 +34,8 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
 
     Franc(5) should not be null
   }
+  
+  "Dollar" should "not be equal to Franc" in {
+    Dollar(5) should not be Franc(5)
+  }
 }
