@@ -8,3 +8,8 @@ trait Money(val amount: Int):
     case _ => false
 
   override def hashCode(): Int = amount.hashCode
+
+object Money:
+  def dollar(amount: Int): Money = Dollar(amount)
+
+  def franc(amount: Int): Money = Franc(amount)
