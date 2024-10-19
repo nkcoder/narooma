@@ -59,4 +59,4 @@
 - [x] Common equals
 - [ ] Common times
 - [x] Francs != Dollars
-- [ ] Currency?
+- [x] Currency?

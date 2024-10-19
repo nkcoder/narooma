@@ -3,6 +3,8 @@ package org.nkcoder
 trait Money(val amount: Int):
   def times(multiplier: Int): Money
 
+  def currency: Currency
+
   override def equals(obj: Any): Boolean = obj match
     case that: Money if getClass == that.getClass => amount == that.amount
     case _ => false

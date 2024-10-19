@@ -46,12 +46,17 @@ class MultiCurrencySpec extends AnyFlatSpec with should.Matchers {
     val fiveFranc: Money = Money.franc(5)
     Money.franc(15) should be(fiveFranc.times(3))
   }
-  
+
   "Money" should "be able to process equality" in {
     Money.dollar(5) should be(Money.dollar(5))
     Money.dollar(5) should not be Money.dollar(6)
     Money.franc(5) should be(Money.franc(5))
     Money.franc(5) should not be Money.franc(6)
     Money.dollar(5) should not be Money.franc(5)
+  }
+
+  "Currency" should "be there for us" in {
+    Currency.USD should be(Money.dollar(1).currency)
+    Currency.CHF should be(Money.franc(1).currency)
   }
 }
