@@ -1,8 +1,7 @@
 package org.nkcoder
 
-class Dollar(override val amount: Int) extends Money(amount):
-  override def times(multiplier: Int): Money = Money.dollar(amount * multiplier)
+import Currency.USD
 
-  override def currency: Currency = Currency.USD
+class Dollar(override val amount: Int, override val currency: Currency = USD) extends Money(amount, currency)
 
 
