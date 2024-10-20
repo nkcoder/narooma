@@ -56,11 +56,6 @@ class CurrencySpec extends AnyFlatSpec with should.Matchers {
     Money.dollar(5) should not be Money.franc(5)
   }
 
-//  it should "be able to process simple addition" in {
-//    val sum = Money.dollar(5) + Money.dollar(6)
-//    sum should be(Money.dollar(11))
-//  }
-
   it should "be able to process addition with currency reduce" in {
     val sum: Expression = Money.dollar(5) + Money.dollar(6)
     val bank = Bank()
@@ -88,6 +83,18 @@ class CurrencySpec extends AnyFlatSpec with should.Matchers {
     val bank = Bank()
     val result = bank.reduce(Money.dollar(1), Currency.USD)
     result should be(Money.dollar(1))
+  }
+
+  behavior of "Bank"
+  "Bank" should "be able to reduce Money with different currency" in {
+    val bank = Bank()
+    bank.addRate(Currency.CHF, Currency.USD, 2)
+    val result = bank.reduce(Money.franc(2), Currency.USD)
+    result should be(Money.dollar(1))
+  }
+  
+  it should "handle identity rate" in {
+    Bank().rate(Currency.USD, Currency.USD) should be(1)
   }
 
   behavior of "Currency"

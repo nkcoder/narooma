@@ -80,9 +80,16 @@
 - [ ] Money rounding?
 - [ ] $5 + $6 = $11
 
-### V8 (clean up)
+### V8
 - [ ] $5 + 10 CHF = $10 if CHF:USD rate is 2:1
 - [ ] Money rounding?
 - [ ] $5 + $6 = $11
 - [x] Bank.reduce(Money)
 - [ ] Reduce Money with conversion
+
+### V8
+- [ ] $5 + 10 CHF = $10 if CHF:USD rate is 2:1
+- [ ] Money rounding?
+- [x] $5 + $6 = $11
+- [x] Bank.reduce(Money)
+- [x] Reduce Money with conversion

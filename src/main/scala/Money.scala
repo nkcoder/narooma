@@ -13,7 +13,9 @@ class Money(val amount: Int, val currency: Currency) extends Expression:
   @targetName("add")
   def +(addend: Money): Sum = Sum(this, addend)
 
-  def reduce(to: Currency): Money = this
+  def reduce(bank: Bank, to: Currency): Money =
+    val rate = bank.rate(currency, to)
+    Money(amount / rate, to)
 
   override def equals(obj: Any): Boolean = obj match
     case that: Money => amount == that.amount && currency == that.currency
