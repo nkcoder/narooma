@@ -2,7 +2,7 @@ package org.nkcoder
 
 import scala.annotation.targetName
 
-class Money(val amount: Int, val currency: Currency):
+class Money(val amount: Int, val currency: Currency) extends Expression:
   def times(multiplier: Int): Money = Money(amount * multiplier, currency)
 
   /**
@@ -11,7 +11,9 @@ class Money(val amount: Int, val currency: Currency):
    * Ref: https://docs.scala-lang.org/scala3/reference/changed-features/operators.html
    */
   @targetName("add")
-  def +(addend: Money): Money = Money(amount + addend.amount, currency)
+  def +(addend: Money): Sum = Sum(this, addend)
+
+  def reduce(to: Currency): Money = this
 
   override def equals(obj: Any): Boolean = obj match
     case that: Money => amount == that.amount && currency == that.currency

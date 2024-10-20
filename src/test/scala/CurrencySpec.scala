@@ -3,8 +3,6 @@ package org.nkcoder
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 
-import scala.Console.in
-
 class CurrencySpec extends AnyFlatSpec with should.Matchers {
 
   behavior of "Dollar"
@@ -58,9 +56,38 @@ class CurrencySpec extends AnyFlatSpec with should.Matchers {
     Money.dollar(5) should not be Money.franc(5)
   }
 
-  it should "be able to process addition" in {
-    val sum = Money.dollar(5) + Money.dollar(6)
-    sum should be(Money.dollar(11))
+//  it should "be able to process simple addition" in {
+//    val sum = Money.dollar(5) + Money.dollar(6)
+//    sum should be(Money.dollar(11))
+//  }
+
+  it should "be able to process addition with currency reduce" in {
+    val sum: Expression = Money.dollar(5) + Money.dollar(6)
+    val bank = Bank()
+    val reduced = bank.reduce(sum, Currency.USD)
+    reduced should be(Money.dollar(11))
+  }
+
+  it should "return Sum for addition" in {
+    val five = Money.dollar(5)
+    val six = Money.dollar(6)
+    val result: Expression = five + six
+    val sum = result.asInstanceOf[Sum]
+    sum.augend should be(five)
+    sum.addend should be(six)
+  }
+
+  it should "reduce sum" in {
+    val sum: Expression = Sum(Money.dollar(3), Money.dollar(4))
+    val bank = Bank()
+    val result = bank.reduce(sum, Currency.USD)
+    result should be(Money.dollar(7))
+  }
+
+  it should "reduce Money" in {
+    val bank = Bank()
+    val result = bank.reduce(Money.dollar(1), Currency.USD)
+    result should be(Money.dollar(1))
   }
 
   behavior of "Currency"
